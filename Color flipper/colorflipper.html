@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial scale=1.0">
+<title>Color flipper</title>
+<style>
+* {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        margin-top: 200px;
+      }
+      li,
+      a,
+      button {
+        font-family: sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: aqua;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 10%;
+        background-color: grey;
+      }
+      .nav-links {
+        list-style: none;
+      }
+      .nav-links li a:hover {
+        color: white;
+      }
+      h4 {
+        color: aliceblue;
+        padding-right: 150px;
+        font-weight: bold;
+      }
+      .nav-links li {
+        display: inline-block;
+      }
+      .nav-links li a {
+        padding-left: 50px;
+        font-weight: bolder;
+      }
+      button {
+        background-color: grey;
+        font-weight: bold;
+        color: white;
+        border-radius: 10px;
+        margin-top: 50px;
+      }
+      .container {
+        background-color: transparent;
+      }
+
+
+</style>
+</head>
+<body>
+
+<nav>
+      <div class="nav">
+        <ul class="nav-links">
+          <li>
+            <h4>color flipper</h4>
+          </li>
+          </ul>
+      </div>
+    </nav>
+    <center>
+      <main>
+        <div class="container">
+          <h2>
+            Background Color :
+            <span class="color">#ffffff</span>
+          </h2>
+          <button class="btn btn-hero" id="btn">Change color</button>
+        </div>
+      </main>
+    </center>
+	
+	<script>
+	const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+const btn = document.getElementById('btn')
+const color = document.querySelector('.color')
+
+btn.addEventListener('click', function () {
+  let hexColor = '#'
+  for (let i = 0; i < 6; i++) {
+    hexColor += hex[getRandomNumber()]
+  }
+  color.textContent = hexColor
+  document.body.style.backgroundColor = hexColor
+})
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * hex.length)
+}
+</script>
+
+</body>
+</html>
