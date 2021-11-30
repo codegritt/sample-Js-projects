@@ -1,0 +1,166 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial scale=1.0">
+<title>Login form</title>
+
+<style>
+
+:root {
+  --white: #fff;
+  --black: #1c2b2d;
+  --blue: #31326f;
+  --light-blue: #005490;
+  --color-primary: #9d0191;
+  --color-sec: #db6400;
+  --grey: #eee;
+  --dark-grey: #222831;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  /* max-width: 900px; */
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url(./images/bg.jpg) no-repeat center;
+  background-size: cover;
+  position: relative;
+  color: var(--white);
+}
+
+.title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  width: 50rem;
+  background-color: var(--dark-grey);
+  padding: 1rem 0;
+}
+
+.display {
+  width: 50rem;
+  background-color: rgba(90, 9, 94, 0.5);
+  padding: 3rem 0;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+.date {
+  background-color: var(--color-primary);
+  padding: 2rem 0;
+}
+
+</style>
+</head>
+
+ <body>
+    <section>
+      <div class="container">
+        <div class="title">
+          <h1>Digital Clock</h1>
+        </div>
+        <div class="display date">Thur, 19 Mar</div>
+        <div class="display time">12:00AM</div>
+      </div>
+    </section>
+
+    <script>
+	
+	let today = new Date();
+
+function getDate(d) {
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = days[d.getDay()];
+  let date = d.getDate();
+  let month = months[d.getMonth()];
+  let year = d.getFullYear();
+
+  return `${day}, ${date} ${month} ${year}`;
+}
+
+const date = document.querySelector(".date");
+date.innerHTML = getDate(today);
+
+// Get Time
+function showTime() {
+  let date = new Date();
+
+  let h = date.getHours();
+  let m = date.getMinutes();
+  let s = date.getSeconds();
+  let session = "AM";
+
+  if (h == 0) {
+    h = 12;
+  }
+  if (h > 12) {
+    h = h - 12;
+    session = "PM";
+  }
+
+  // Append 0 to single digit
+  h = h < 10 ? "0" + h : h;
+  m = m < 10 ? "0" + m : m;
+  s = s < 10 ? "0" + s : s;
+
+  let time = `${h}:${m}:${s} ${session}`;
+  document.querySelector(".time").innerHTML = time;
+}
+
+setInterval(showTime, 1000);
+
+	</script>
+  </body>
+</html>
